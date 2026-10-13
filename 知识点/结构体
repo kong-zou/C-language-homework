@@ -1,1 +1,18 @@
+https://www.doubao.com/thread/xxQIycwgBdxmfaIn3
 
+结构体有两种书写方式 但每种方式都有自己的使用场景 
+我觉得太麻烦 而且分不清 所以
+有一个通用性最强的形式
+typedef struct Node {
+    int data;
+    struct Node *next;  // 内部自引用只能写 struct Node，不能写 Node
+} Node;
+
+这个对数据结构学习和绝大多数工程场景来说，「标签 + typedef 混合写法」是通用性最强、
+适用场景最多的写法，完全可以当作默认写法来用。
+
+这样不用考虑太多
+2.
+ 建立结构体后 结构体名就和`int`/`char` 这种基础类型同样的效果了 
+  比如定义一个结构体数组
+  Nnod class[max];
