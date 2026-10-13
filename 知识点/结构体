@@ -25,3 +25,31 @@ typedef struct Node {
   } Node;               //    `typedef` 别名的生效时机，在整个结构体定义完成之后；
                          //     而结构体内部的指针定义在结构体中间，此时别名还没生效，
                          //      只能用原生的 `struct Node` 标签形式。
+
+
+3.
+接下来来讲结构体在自定义函数和主函数的使用
+上面已经讲过 在定义新的结构体时可以直接用定义的名字
+比如:
+Node class[];
+Node student;
+
+
+在自定义函数时也可以定义
+void kong(Node class[]){}  //也可以定义成不一样的名称 class为局部变量 名称不影响;
+void zou(Node *class1){}    //不是数组的话 必须这样写
+int main(){
+Node class[];
+Node class1;
+kong(class);
+zou(&class1);}
+
+
+
+
+
+
+
+
+
+
