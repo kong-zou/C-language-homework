@@ -47,10 +47,10 @@ struct student{
 	char name[10];
 	double chengji;
 };
- void zhizhen(struct student class1[]){
-  printf("学号：%d\n", class1[i].xuehao);
-    printf("姓名：%s\n", class1[i].name);
-    printf("成绩：%.1lf\n", class1[i].chengji);
+ void zhizhen(struct student class2[]){
+  printf("学号：%d\n", class2[i].xuehao);
+    printf("姓名：%s\n", class2[i].name);
+    printf("成绩：%.1lf\n", class2[i].chengji);
 }
 int main(){
 struct student class1[MAX];    //先定义结构体数组名
