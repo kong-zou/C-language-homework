@@ -42,22 +42,22 @@ int* np=&n;
                                                                                 }
 #include<stdio.h>
 #define MAX 101  //定义MAX=101  之后再写代码的时候时MAX就等于101
-struct student{
+typedef struct student{
 	int xuehao;
 	char name[10];
 	double chengji;
-};
- void zhizhen(struct student class2[]){
+}student;
+ void zhizhen(student class2[]){    //重新定义一个新的结构体 因为是数组 所以可以写成class2[] 但也可以写成*class2
   printf("学号：%d\n", class2[i].xuehao);
     printf("姓名：%s\n", class2[i].name);
     printf("成绩：%.1lf\n", class2[i].chengji);
 }
 int main(){
-struct student class1[MAX];    //先定义结构体数组名
-  zhizhen(class1);
+student class1[MAX];    //先定义结构体数组名
+  zhizhen(class1);       //此时class1为数组名称 所以不是写成&class1
 }
 原理:
-- 形参 `struct student class1[]` 本质上等价于 `struct student *class1`
+- 形参 ` student class1[]` 本质上等价于 `student *class1`
 - 实参 `class1` 是数组名，本身就是数组首元素的内存地址
 - 最终传递的就是首地址，函数里顺着地址直接操作原数组内存
 
