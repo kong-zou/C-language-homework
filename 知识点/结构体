@@ -15,4 +15,13 @@ typedef struct Node {
 2.
  建立结构体后 结构体名就和`int`/`char` 这种基础类型同样的效果了 
   比如定义一个结构体数组
-  Nnod class[max];
+  Nnod class[max];  //不需要带struct
+  就可以当成int使用
+
+  在构建链表的时候也是同理
+typedef struct Node {
+    int data;
+    struct Node *next;  // 构建一个Node*类型的变量;  此时带struct的原因是
+  } Node;               //    `typedef` 别名的生效时机，在整个结构体定义完成之后；
+                         //     而结构体内部的指针定义在结构体中间，此时别名还没生效，
+                         //      只能用原生的 `struct Node` 标签形式。
