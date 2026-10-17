@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include <stdlib.h>
+typedef struct SqStack{
+    char data[1024];
+    int top;
+}SqStack;
+void shanchu(SqStack *s){
+    if(s->top==-1){
+                ;   
+            }
+            else{
+                s->top--;      //减少栈顶指针               
+            }
+}
+void qingchu(SqStack *s){
+    s->top=-1;
+}
+void zhengchang(SqStack *s,char ch){
+     s->top++;    //先增加栈顶指针
+            s->data[s->top]=ch;
+}
+int main(){
+    char ch;
+    SqStack *s;    
+    s=(SqStack*)malloc(sizeof(SqStack));    //动态分配内存
+    s->top=-1;               //初始化栈顶指针
+    printf("请输入一行字符\n");
+    //  利用循环 和switch读取字符
+    while((ch=getchar())!='\n'){
+        switch(ch){
+            case '#':      //注意case后面有空格
+           shanchu(s);
+           break;
+            case '@':
+            qingchu(s);
+            break;
+            default:
+            zhengchang(s,ch);
+            break;
+        }
+    }
+    printf("输出的字符为：");
+    for(int i=0;i<=s->top;i++){
+        printf("%c",s->data[i]);
+    }
+    printf("\n");
+    free(s);
+    return 0;
+}
