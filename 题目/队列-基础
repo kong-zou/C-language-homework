@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX 6       //定义有6个空间 但实际会牺牲一个位置 
+//如果一个格子都不空，队满时 rear 会正好等于 front，和判断队空的条件相同 
+//所以主动留一个格子不存，让队满时 front 和 rear 永远差一格,故意产生不同的判断条件,空和满就一眼分清
+typedef struct Node{
+    int data[MAX];
+    int front;     //首元素的前一个
+    int rear;     //指向队尾
+}Node;
+//初始化队列
+void IQ(Node *s){
+    s->front=0;
+    s->rear=0;
+}
+//判断队列是否为空  
+int QE(Node *s){
+    return s->front==s->rear;
+}
+//判断队列是否为满
+int QF(Node *s){
+    return (s->rear+1)%MAX==s->front;   //这个条件就是决定是否留一个空格 
+	                                    //所以为了遵守这个条件 每入队一个元素就要判断一下 
+}
+//入队
+void EQ(Node *s,int x){
+    if(QF(s)==1){
+        printf("队列已满 无法添加\n");
+        
+        return;
+    }
+    s->rear=(s->rear+1)%MAX;
+    s->data[s->rear]=x;
+}
+//出队
+void DQ(Node *s){
+    if(QE(s)==1){
+        printf("队列为空！");
+        return;
+    }
+    s->front=(s->front+1)%MAX;
+    printf("%d",s->data[s->front]);
+    return;
+}
+//查看队头元素
+void GH(Node *s){
+    if(QE(s)==1){
+        printf("队列为空！");
+        return;
+    }
+    printf("队头元素为%d",s->data[(s->front+1)%MAX]);
+}
+//查看元素个数
+int QL(Node *s){
+    int x;
+    x=((s->rear)-(s->front)+MAX)%MAX;
+    return x;
+}
+//打印队列
+void SQ(Node s){
+    int n;
+    n=((s.rear)-(s.front)+MAX)%MAX;
+    for(int i=1;i<=n;i++){
+        printf("%d\n",s.data[(s.front+i)%MAX]);
+    }
+}
+void kong(Node *s){
+    char ch;
+    int n;
+    int x;
+    printf("\n\n\n\n\n请输入操作所对应的数字\n");
+    printf("1.初始化队列\n");
+    printf("2.查看队列状态\n");
+    printf("3.入队\n");
+    printf("4.出队\n");
+    printf("5.查看队头元素\n");
+    printf("6.查看元素个数\n");
+    printf("7.打印队列\n");
+    printf("8.退出\n");
+    scanf("%c",&ch);
+    switch(ch){
+        case '1' :
+        IQ(s);
+        printf("初始化完成\n");
+        break;
+        case '2' :
+        if(QE(s)==1){
+            printf("队列为空\n");
+        }
+        else if(QF(s)==1){
+            printf("队列为满\n");
+        }
+        else{
+            printf("队列有%d个元素\n",QL(s));
+        }
+        break;
+        case '3' :
+        printf("请输入要入队的个数:(输入一个回车再输下一个)\n");
+        scanf("%d",&n);        
+        for(int i=0;i<n;i++){
+        	printf("请输入第%d个:\n",i+1);
+        	scanf("%d",&x);
+            EQ(s,x);
+        }
+        printf("操作完成\n");
+        break;
+        case '4' :
+        printf("请输入出队的个数\n");
+        scanf("%d",&n);
+        for(int i=1;i<=n;i++){
+            DQ(s);
+            printf("\n");
+        }
+        printf("操作完成\n");
+        break;
+        case '5' :
+        GH(s);
+        break;
+        case '6' :
+        printf("元素个数为%d\n",QL(s));
+        break;
+        case '7' :
+        SQ(*s);
+        break;
+        case '8' :
+        exit(0);
+        default :
+        	printf("请输入正确指令\n"); 
+    }
+    getchar();
+}
+int main(){
+    Node s;
+    IQ(&s);
+    while(1){
+        kong(&s);
+    }
+}
