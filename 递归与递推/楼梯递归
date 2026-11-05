@@ -1,0 +1,19 @@
+#include<stdio.h>
+int digui(int n){
+    if(n==1){
+        return 1;
+    }
+    if(n==2){
+        return 2;
+    }
+    return digui(n-1)+digui(n-2);     //凭借这一步一直调用自己 直到拆解成n=1 or n=2 
+}
+int main(){
+    int n,a;
+    while(1){
+    printf("请输入台阶数\n");
+    scanf("%d",&n);
+    a=digui(n);
+    printf("%d\n",a);}
+    return 0;
+}
